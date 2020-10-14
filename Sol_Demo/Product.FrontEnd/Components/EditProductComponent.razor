@@ -1,0 +1,36 @@
+﻿@if (IsDisplay == true)
+{
+
+    <div class="modal" style="display:block">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h6 class="modal-title">Edit Product</h6>
+                    <button type="button" class="close" @onclick="CancelEditDialog">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <EditForm Model="this.SelectedProduct" Context="formContext">
+                        <DataAnnotationsValidator />
+
+                        <InputProductComponent Product="this.SelectedProduct" OnSubmit="@(()=> this.OnSubmit(formContext))"></InputProductComponent>
+                    </EditForm>
+
+                    @if (this.ErrorMessage != null)
+                    {
+                        <ErrorMessageComponent ErrorMessage="@this.ErrorMessage"></ErrorMessageComponent>
+                    }
+                </div>
+
+                <!-- Modal footer -->
+                <!--<div class="modal-footer">
+                    <button type="button" class="btn btn-danger" @onclick="CancelEditDialog">Close</button>
+                </div>-->
+            </div>
+        </div>
+    </div>
+
+}

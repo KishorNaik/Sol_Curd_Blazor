@@ -1,0 +1,37 @@
+﻿@if (IsDisplay == true)
+{
+    <div class="modal" style="display:block">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h6 class="modal-title">Delete Product</h6>
+                    <button type="button" class="close" @onclick="OnCancelDeleteDialog">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+
+                    @{
+
+                        var deleteMessage = $"Do you want to delete {this.SelectedProduct.ProductName} product from system?";
+
+                    }
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h3>@deleteMessage</h3>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <button class="btn btn-dark" @onclick="this.OnYes">Yes</button>
+                            <button class="btn btn-dark" @onclick="this.OnCancelDeleteDialog">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

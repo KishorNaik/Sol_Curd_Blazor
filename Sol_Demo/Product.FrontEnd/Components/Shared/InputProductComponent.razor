@@ -1,0 +1,27 @@
+﻿<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="txtProductName">Product Name:</label>
+                <InputText id="txtProductName" @bind-Value="this.Product.ProductName" class="form-control"></InputText>
+                <ValidationMessage For="@(()=> this.Product.ProductName)"></ValidationMessage>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="txtUnitPrice">Unit Price:</label>
+
+                <InputNumber id="txtUnitPrice" TValue="double?" @bind-Value="this.Product.UnitPrice" class="form-control"></InputNumber>
+                <ValidationMessage For="@(()=> this.Product.UnitPrice)"></ValidationMessage>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <button type="submit" class="btn btn-dark" @onclick="this.OnSubmit">Submit</button>
+        </div>
+    </div>
+</div>

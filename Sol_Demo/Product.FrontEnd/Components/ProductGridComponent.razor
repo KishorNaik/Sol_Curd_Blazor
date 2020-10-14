@@ -1,0 +1,61 @@
+﻿@page "/productgrid"
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-danger" @onclick="this.OnAdd">Add Product</button>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-sm-12">
+            @if (this.IsLoad == true)
+            {
+
+                @if (this.ErrorMessage == null)
+                {
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped table-dark">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Unit Price</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var productModel in this.ListProducts)
+                                {
+                                    <tr>
+                                        <td>@productModel.ProductName</td>
+                                        <td>@productModel.UnitPrice</td>
+                                        <td>
+                                            <button class="btn btn-danger" @onclick="@(()=> this.OnEdit(productModel.ProductIdentity))">Edit</button>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-danger" @onclick="@(()=> this.OnDelete(productModel.ProductIdentity))">Delete</a>
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <ErrorMessageComponent ErrorMessage="@this.ErrorMessage"></ErrorMessageComponent>
+                }
+
+            }
+            else
+            {
+                <div>Loading...</div>
+            }
+
+            <AddProductComponent @ref="this.AddProductComp" RefreshEvent="this.RefreshState"></AddProductComponent>
+            <EditProductComponent @ref="this.EditProductComp" SelectedProduct="this.SelectedProduct" RefreshEvent="this.RefreshState"></EditProductComponent>
+            <DeleteProductComponent @ref="this.DeleteProductComp" SelectedProduct="this.SelectedProduct" RefreshEvent="this.RefreshState"></DeleteProductComponent>
+        </div>
+    </div>
+</div>
